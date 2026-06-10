@@ -25,7 +25,7 @@ const transactionRoutes = require("./routes/transaction.routes")
  */
 
 app.get("/", (req, res) => {
-    res.send("Ledger Service is up and running")
+    res.send("Ledger Service is up and running, Also make sure it is backend focused and not frontend focused, so no need to worry about CORS or anything like that, just focus on the backend logic and functionality.")
 })
 
 app.use("/api/auth", authRouter)
