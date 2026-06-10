@@ -4,7 +4,7 @@ A secure, high-concurrency double-entry ledger backend system built with **Node.
 
 ---
 
-## 🚀 Key Engineering Features
+## Key Engineering Features
 
 1. **Double-Entry Accounting Core**: Accounts do not store a mutable balance field. Instead, balance is dynamically calculated by aggregating all historic debit and credit entries in the ledger. This ensures 100% auditability and consistent data.
 2. **Strict Concurrency Protection (Locking)**: Uses pessimistic document-level write-locks on accounts inside MongoDB transaction sessions. This serializes concurrent requests for the same sender, eliminating race conditions and double-spending.
@@ -17,7 +17,7 @@ A secure, high-concurrency double-entry ledger backend system built with **Node.
 
 ---
 
-## 📐 System Architecture Flow
+## System Architecture Flow
 
 ```mermaid
 sequenceDiagram
@@ -58,7 +58,7 @@ sequenceDiagram
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 *   **Runtime**: Node.js
 *   **Web Framework**: Express
@@ -71,7 +71,7 @@ sequenceDiagram
 
 ---
 
-## 🏁 Getting Started
+## Getting Started
 
 ### Option 1: Running with Docker (Recommended)
 This launches the Node app and automatically configures a single-node MongoDB Replica Set (required for transactions):
@@ -104,7 +104,7 @@ Once the container starts:
 
 ---
 
-## 🧪 Testing
+## Testing
 
 The test suite runs an in-memory replica set via `mongodb-memory-server` ensuring tests run independently of any local database configurations.
 
@@ -115,7 +115,7 @@ npm test
 
 ---
 
-## 📖 API Documentation Overview
+## API Documentation Overview
 
 Expose interactive docs at `/api-docs` using Swagger. Below are the primary endpoints:
 
