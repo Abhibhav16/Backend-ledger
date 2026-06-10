@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGO_URI=mongodb://db:27017/ledger?replicaSet=rs0
+      - JWT_SECRET=change-this-in-production-very-secret
+      - EMAIL_USER=your-email@gmail.com
+      - CLIENT_ID=your-client-id
+      - CLIENT_SECRET=your-client-secret
+      - REFRESH_TOKEN=your-refresh-token
+      - LOG_LEVEL=info
+      - NODE_ENV=development
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'localhost:27017'}]}) }" | mongosh --port 27017 --quiet
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mongo-data:
